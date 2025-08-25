@@ -7,3 +7,10 @@ Bruker VSC til å jobbe med dette faget, sånn som andre fag.
 Så får jeg heller bruke Eclipse til greien som bjarte og kompani legger ut.
 Fikser med å få apitemplate og domintro zip arkiv til å funke etter forelesning i dag.
 
+## 25/8 
+Fikk matet inn eclipseprosjektene som er distribuert i eclipse sånn at de kan kjøres derfra.
+
+Vi har fått utlevert neste exercise - kom meg i startgropen med det i det minste.
+
+Føles som at jeg må få brukt alle triksene og teknikkene som er distribuert i eksemplene - må skrive kode for å lære noe her.
+
