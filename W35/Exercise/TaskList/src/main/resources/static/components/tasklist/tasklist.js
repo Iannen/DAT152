@@ -30,12 +30,27 @@ taskrow.innerHTML = `
   */
 class TaskList extends HTMLElement {
 
-    #shadow;    
+    #shadow; 
     constructor() {
         super();
         
-        this.#shadow=this.attachShadow({mode:closed});
-        
+        this.#shadow=this.attachShadow({mode:"closed"});
+        const content = template.content.cloneNode(true);
+        this.#shadow.appendChild(content);
+
+        fetch("/TaskList/api/tasklist")
+            .then(response =>{
+                if (!response.ok){
+                    throw new Error("Failed to fetch tasklist")
+                }                 
+                return response.json();
+            })
+            .then(responseObject => {
+                const tasks = responseObject.tasks;
+                tasks.forEach(task => {
+                    this.showTask(task)
+                });
+            })
         /**
          * Fill inn rest of the code
          */
@@ -82,6 +97,17 @@ class TaskList extends HTMLElement {
         /**
          * Fill inn the code
          */
+        const root = this.#shadow.getElementById("tasklist");
+        let table = root.querySelector("table");
+        if (!table){    
+            table = tasktable.content.cloneNode(true);
+            root.appendChild(table); 
+        }
+        const tablerow = taskrow.content.cloneNode(true);
+        const rowcolumns = tablerow.querySelectorAll("td");
+        rowcolumns[0].textContent = task.title;
+        rowcolumns[1].textContent = task.status;
+        table.prepend(tablerow);
     }
 
     /**
