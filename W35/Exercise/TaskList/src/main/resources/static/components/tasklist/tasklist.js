@@ -34,7 +34,7 @@ class TaskList extends HTMLElement {
     constructor() {
         super();
         
-        this.#shadow=this.attachShadow({mode:closed
+        this.#shadow=this.attachShadow({mode:closed});
         
         /**
          * Fill inn rest of the code
