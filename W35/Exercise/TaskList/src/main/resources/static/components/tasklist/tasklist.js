@@ -30,7 +30,8 @@ taskrow.innerHTML = `
   */
 class TaskList extends HTMLElement {
 
-    #shadow; 
+    #shadow;
+    #deleteCallback; 
     constructor() {
         super();
         
@@ -38,19 +39,19 @@ class TaskList extends HTMLElement {
         const content = template.content.cloneNode(true);
         this.#shadow.appendChild(content);
 
-        fetch("/TaskList/api/tasklist")
-            .then(response =>{
-                if (!response.ok){
-                    throw new Error("Failed to fetch tasklist")
-                }                 
-                return response.json();
-            })
-            .then(responseObject => {
-                const tasks = responseObject.tasks;
-                tasks.forEach(task => {
-                    this.showTask(task)
-                });
-            })
+        // fetch("/TaskList/api/tasklist")
+        //     .then(response =>{
+        //         if (!response.ok){
+        //             throw new Error("Failed to fetch tasklist")
+        //         }                 
+        //         return response.json();
+        //     })
+        //     .then(responseObject => {
+        //         const tasks = responseObject.tasks;
+        //         tasks.forEach(task => {
+        //             this.showTask(task)
+        //         });
+        //     })
         /**
          * Fill inn rest of the code
          */
@@ -107,6 +108,10 @@ class TaskList extends HTMLElement {
         const rowcolumns = tablerow.querySelectorAll("td");
         rowcolumns[0].textContent = task.title;
         rowcolumns[1].textContent = task.status;
+        rowcolumns[3].querySelector("button").addEventListener("click", ()=>{
+            #deleteCallback();
+            this.removeTask(task.id);
+        });
         table.prepend(tablerow);
     }
 
