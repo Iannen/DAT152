@@ -20,3 +20,9 @@ Var i forelesning, det var om webworkers, promises og async / await.
 Neste gang blir det Fetch.
 
 Gjorde meg ferdig med ex.2 (tror jeg, syntes det så bra ut).
+
+La til bjarteprosjekter for ECMA og Communication i repo
+
+La til første oblig i en ny mappe
+
+La til gamle eksamengreier
