@@ -14,3 +14,9 @@ Vi har fått utlevert neste exercise - kom meg i startgropen med det i det minst
 
 Føles som at jeg må få brukt alle triksene og teknikkene som er distribuert i eksemplene - må skrive kode for å lære noe her.
 
+
+## 29/8 
+Var i forelesning, det var om webworkers, promises og async / await.
+Neste gang blir det Fetch.
+
+Fortsetter med ex.2
