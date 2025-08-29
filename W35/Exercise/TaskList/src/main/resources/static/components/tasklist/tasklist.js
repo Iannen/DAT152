@@ -31,30 +31,14 @@ taskrow.innerHTML = `
 class TaskList extends HTMLElement {
 
     #shadow;
-    #deleteCallback; 
+    #statusesList;
+    #changeStatusCallback;
+    #deletetaskCallback;
+
     constructor() {
         super();
-        
         this.#shadow=this.attachShadow({mode:"closed"});
-        const content = template.content.cloneNode(true);
-        this.#shadow.appendChild(content);
-
-        // fetch("/TaskList/api/tasklist")
-        //     .then(response =>{
-        //         if (!response.ok){
-        //             throw new Error("Failed to fetch tasklist")
-        //         }                 
-        //         return response.json();
-        //     })
-        //     .then(responseObject => {
-        //         const tasks = responseObject.tasks;
-        //         tasks.forEach(task => {
-        //             this.showTask(task)
-        //         });
-        //     })
-        /**
-         * Fill inn rest of the code
-         */
+        this.#shadow.appendChild(template.content.cloneNode(true));
     }
 
     /**
@@ -62,9 +46,7 @@ class TaskList extends HTMLElement {
      * @param {Array} list with all possible task statuses
      */
     setStatuseslist(allstatuses) {
-        /**
-         * Fill inn the code
-         */
+        this.#statusesList=allstatuses;
     }
 
     /**
@@ -73,9 +55,7 @@ class TaskList extends HTMLElement {
      * @param {function} callback
      */
     changestatusCallback(callback) {
-        /**
-         * Fill inn the code
-         */
+        this.#changeStatusCallback = callback;
     }
 
     /**
@@ -84,9 +64,7 @@ class TaskList extends HTMLElement {
      * @param {function} callback
      */
     deletetaskCallback(callback) {
-        /**
-         * Fill inn the code
-         */
+        this.#deletetaskCallback = callback;
     }
 
     /**
@@ -95,22 +73,33 @@ class TaskList extends HTMLElement {
      * @param {Object} task - Object representing a task
      */
     showTask(task) {
-        /**
-         * Fill inn the code
-         */
         const root = this.#shadow.getElementById("tasklist");
+        if (!root.querySelector("table"))
+            root.appendChild(tasktable.content.cloneNode(true));
         let table = root.querySelector("table");
-        if (!table){    
-            table = tasktable.content.cloneNode(true);
-            root.appendChild(table); 
-        }
-        const tablerow = taskrow.content.cloneNode(true);
+        const tablerow = taskrow.content.cloneNode(true).querySelector("tr");
+        tablerow.dataset.id = task.id;
         const rowcolumns = tablerow.querySelectorAll("td");
+
         rowcolumns[0].textContent = task.title;
         rowcolumns[1].textContent = task.status;
+
+        this.#statusesList.forEach(status => {
+            const option = document.createElement("option");
+            option.text = `${status}`;
+            rowcolumns[2].querySelector("select").appendChild(option);    
+        });
+        
+        rowcolumns[2].querySelector("select").addEventListener("change", (event)=>{
+            const newStatus = event.target.value;
+            if (window.confirm(`Set '${task.title}' to ${newStatus}?`))
+                this.updateTask({id:task.id, status:newStatus})
+            rowcolumns[2].querySelector("select").value="0";
+        })
+        
         rowcolumns[3].querySelector("button").addEventListener("click", ()=>{
-            #deleteCallback();
-            this.removeTask(task.id);
+            if (window.confirm(`Delete task '${task.title}'?`))
+                this.removeTask(task.id);
         });
         table.prepend(tablerow);
     }
@@ -120,9 +109,11 @@ class TaskList extends HTMLElement {
      * @param {Object} task - Object with attributes {'id':taskId,'status':newStatus}
      */
     updateTask(task) {
-        /**
-         * Fill inn the code
-         */
+        this.#changeStatusCallback(task.id,task.status);
+        const tr = this.#shadow
+            .getElementById("tasklist")
+            .querySelector(`tr[data-id="${task.id.toString()}"]`);
+        tr.querySelectorAll("td")[1].textContent=task.status;
     }
 
     /**
@@ -130,9 +121,18 @@ class TaskList extends HTMLElement {
      * @param {Integer} task - ID of task to remove
      */
     removeTask(id) {
-        /**
-         * Fill inn the code
-         */
+        this.#deletetaskCallback(id);
+        if (this.getNumtasks()===1){
+            this.#shadow.textContent="";
+            const content = template.content.cloneNode(true);
+            this.#shadow.appendChild(content);
+        }
+        else {
+            const tr = this.#shadow
+                    .getElementById("tasklist")
+                    .querySelector(`tr[data-id="${id.toString()}"]`);
+            tr.remove();
+        }
     }
 
     /**
@@ -140,9 +140,9 @@ class TaskList extends HTMLElement {
      * @return {Number} - Number of tasks on display in view
      */
     getNumtasks() {
-        /**
-         * Fill inn the code
-         */
+        const num = this.#shadow.getElementById("tasklist")
+            .querySelectorAll("tr").length;
+        return num-1;
     }
 }
 customElements.define('task-list', TaskList);

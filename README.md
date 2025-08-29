@@ -19,4 +19,4 @@ Føles som at jeg må få brukt alle triksene og teknikkene som er distribuert i
 Var i forelesning, det var om webworkers, promises og async / await.
 Neste gang blir det Fetch.
 
-Fortsetter med ex.2
+Gjorde meg ferdig med ex.2 (tror jeg, syntes det så bra ut).
