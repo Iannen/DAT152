@@ -128,7 +128,7 @@ class TaskList extends HTMLElement {
             const tr = this.#shadow
                     .getElementById("tasklist")
                     .querySelector(`tr[data-id="${id.toString()}"]`);
-            tr.remove();
+                    tr.remove();
         }
     }
 
