@@ -79,27 +79,26 @@ class TaskList extends HTMLElement {
         let table = root.querySelector("table");
         const tablerow = taskrow.content.cloneNode(true).querySelector("tr");
         tablerow.dataset.id = task.id;
-        const rowcolumns = tablerow.querySelectorAll("td");
 
-        rowcolumns[0].textContent = task.title;
-        rowcolumns[1].textContent = task.status;
+        tablerow.cells[0].textContent = task.title;
+        tablerow.cells[1].textContent = task.status;
 
         this.#statusesList.forEach(status => {
             const option = document.createElement("option");
             option.text = `${status}`;
-            rowcolumns[2].querySelector("select").appendChild(option);    
+            tablerow.cells[2].querySelector("select").appendChild(option);    
         });
         
-        rowcolumns[2].querySelector("select").addEventListener("change", (event)=>{
+        tablerow.cells[2].querySelector("select").addEventListener("change", (event)=>{
             const newStatus = event.target.value;
             if (window.confirm(`Set '${task.title}' to ${newStatus}?`))
-                this.updateTask({id:task.id, status:newStatus})
-            rowcolumns[2].querySelector("select").value="0";
+                this.#changeStatusCallback(task.id, newStatus)
+            tablerow.cells[2].querySelector("select").value="0";
         })
         
-        rowcolumns[3].querySelector("button").addEventListener("click", ()=>{
+        tablerow.cells[3].querySelector("button").addEventListener("click", ()=>{
             if (window.confirm(`Delete task '${task.title}'?`))
-                this.removeTask(task.id);
+                this.#deletetaskCallback(task.id)
         });
         table.prepend(tablerow);
     }
@@ -109,11 +108,10 @@ class TaskList extends HTMLElement {
      * @param {Object} task - Object with attributes {'id':taskId,'status':newStatus}
      */
     updateTask(task) {
-        this.#changeStatusCallback(task.id,task.status);
         const tr = this.#shadow
             .getElementById("tasklist")
             .querySelector(`tr[data-id="${task.id.toString()}"]`);
-        tr.querySelectorAll("td")[1].textContent=task.status;
+        tr.querySelectorAll("td")[1].textContent=task.newStatus;
     }
 
     /**
@@ -121,7 +119,6 @@ class TaskList extends HTMLElement {
      * @param {Integer} task - ID of task to remove
      */
     removeTask(id) {
-        this.#deletetaskCallback(id);
         if (this.getNumtasks()===1){
             this.#shadow.textContent="";
             const content = template.content.cloneNode(true);

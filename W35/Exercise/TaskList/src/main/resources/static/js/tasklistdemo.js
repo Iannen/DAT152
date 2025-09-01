@@ -11,12 +11,14 @@ class TaskDemo {
         this.#tasklist.changestatusCallback(
             (id, newStatus) => {
                 console.log(`Status ${newStatus} for task ${id} approved`)
+                this.#tasklist.updateTask({id, newStatus});
             }
         );
 
         this.#tasklist.deletetaskCallback(
             (id) => {
                 console.log(`Delete of task ${id} approved`)
+                this.#tasklist.removeTask(id);
             }
         );
 

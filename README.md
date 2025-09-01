@@ -26,3 +26,7 @@ La til bjarteprosjekter for ECMA og Communication i repo
 La til første oblig i en ny mappe
 
 La til gamle eksamengreier
+
+### 1.9
+Forelesning om AJAX gikk greit.
+Var på lab, gikk igjennom ex.2 med bjarte. Måtte fikse sånn at child bare kalte callback til controller, så kaller controller på child sin objektmetode.
