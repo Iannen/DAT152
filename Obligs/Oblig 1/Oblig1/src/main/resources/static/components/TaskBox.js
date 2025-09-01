@@ -17,3 +17,14 @@ template.innerHTML = `
  <p><button type="submit">Add task</button></p>
  </dialog>
 `;
+
+class TaskBox extends HTMLElement{
+    #shadow
+
+    constructor(){
+        super();
+        this.#shadow = this.attachShadow({mode:"closed"});
+        this.#shadow.appendChild(template.content.cloneNode(true));
+    }
+}
+customElements.define("task-box", TaskBox);
