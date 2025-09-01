@@ -32,3 +32,5 @@ Forelesning om AJAX gikk greit.
 Var på lab, gikk igjennom ex.2 med bjarte. Måtte fikse sånn at child bare kalte callback til controller, så kaller controller på child sin objektmetode.
 
 Kom bra i gang med ex3/oblig1. Må få satt opp task list med callbacks fra taskview controller for at det skal funke.
+
+edit: må få taskbox til å funke - det er en modal som må trigges og noe sånt
