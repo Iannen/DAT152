@@ -23,10 +23,70 @@ class TaskView extends HTMLElement {
         this.#shadow = this.attachShadow({mode:"closed"});
         this.#shadow.appendChild(template.content.cloneNode(true));
 
-        this.#taskList = this.#shadow.querySelector("task-list");
+        this.#configureTaskList();
         this.#taskBox = this.#shadow.querySelector("task-box");
 
         this.#getTasks();
+    }
+
+    async #configureTaskList(){
+        this.#taskList = this.#shadow.querySelector("task-list");
+
+        try {
+            const response = await fetch(`${this.dataset.serviceurl}/allstatuses`);
+            if (!response.ok)
+                throw new Error(`HTTP error, status ${response.status} `)
+            const data = await response.json();
+            if (data.responseStatus!==true)
+                throw new Error("Error: responseStatus not 'true'");
+            this.#taskList.setStatuseslist(data.allstatuses);
+        }
+        catch (error){
+            console.log("Couldn't get statuseslist: ",error);
+        }
+
+        this.#taskList.changestatusCallback(async (id, newStatus)=>{
+            const url = `${this.dataset.serviceurl}/task/${id}`;
+            const reqOptions ={
+                method: "PUT",
+                headers: {"Content-Type": "application/json; charset=utf-8"},
+                body: JSON.stringify({"status":newStatus})
+            };
+            try {    
+                const response = await fetch(url, reqOptions);
+                if (!response.ok)
+                    throw new Error(`HTTP error, status ${response.status} `)
+
+                const data = await response.json();
+                if (data.responseStatus!==true)
+                    throw new Error("Error: responseStatus not 'true'");
+
+                this.#taskList.updateTask({id, newStatus})
+            }
+            catch (error){
+                console.log("Couldn't update task: ",error)
+            }
+        })
+
+        this.#taskList.deletetaskCallback(async id =>{
+            const url = `${this.dataset.serviceurl}/task/${id}`;
+            try {
+                const response = await fetch(url,{method: "DELETE"});
+                if (!response.ok)
+                    throw new Error(`HTTP error, status ${response.status}`)
+                const data = await response.json();
+                if (data.responseStatus!==true)
+                    throw new Error("Error: responseStatus not 'true'");
+                this.#taskList.removeTask(id);
+                this.updateHeaderMsg(this.#taskList.getNumtasks());
+            }
+            catch (error){
+                console.log("Error deleting task: ",error);
+            }
+        })
+    }
+    #configureTaskBox(){
+        
     }
 
     updateHeaderMsg(numTasks){
