@@ -42,6 +42,7 @@ class TaskBox extends HTMLElement{
         this.#newtaskCallback = callback;
         this.#shadow.querySelector("button").addEventListener("click",e=>{
             const title=this.#shadow.querySelector("input").value;
+            this.#shadow.querySelector("input").value="";
             const status= this.#shadow.querySelector("select").value;
             callback({title, status});
         })

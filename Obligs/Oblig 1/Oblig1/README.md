@@ -19,4 +19,9 @@ Kom bra i gang med ex3/oblig1. Må få satt opp task list med callbacks fra task
 edit: må få taskbox til å funke - det er en modal som må trigges og noe sånt
 
 ## 5.9
-Nesten ferdig nå. Lager en egen API klasse for å sentralisere fetch greier.
+Nesten ferdig nå. Laget en egen API klasse for å sentralisere fetch greier.
+
+TODO: fikse det sånn at task-box har fresh state hver gang den åpnes.
+TODO: Kanskje fikse litt layout of noe CSS og slikt
+
+Tror det er i mål egentlig.
