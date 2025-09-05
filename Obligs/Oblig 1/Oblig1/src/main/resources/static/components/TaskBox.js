@@ -1,4 +1,3 @@
-console.log("Hello from Taskbox");
 const template = document.createElement("template");
 template.innerHTML = `
  <link rel="stylesheet" type="text/css"
@@ -19,12 +18,37 @@ template.innerHTML = `
 `;
 
 class TaskBox extends HTMLElement{
-    #shadow
+    #shadow;
+    #statuseslist;
+    #newtaskCallback;
 
     constructor(){
         super();
         this.#shadow = this.attachShadow({mode:"closed"});
         this.#shadow.appendChild(template.content.cloneNode(true));
+    }
+    show(){
+        this.#shadow.querySelector("dialog").showModal();
+    }
+    setStatuseslist(list){
+        this.#statuseslist=list;
+        list.forEach(status => {
+            const newOption = document.createElement("option");
+            newOption.text=status
+            this.#shadow.querySelector("select").appendChild(newOption);
+        });
+    }
+    newtaskCallback(callback){
+        this.#newtaskCallback = callback;
+        this.#shadow.querySelector("button").addEventListener("click",e=>{
+            const title=this.#shadow.querySelector("input").value;
+            const status= this.#shadow.querySelector("select").value;
+            callback({title, status});
+        })
+
+    }
+    close(){
+        this.#shadow.querySelector("dialog").close();
     }
 }
 customElements.define("task-box", TaskBox);

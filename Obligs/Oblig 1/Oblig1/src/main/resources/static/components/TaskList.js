@@ -1,4 +1,3 @@
-console.log("Hello from Tasklist");
 const template = document.createElement("template");
 template.innerHTML = `
     <link rel="stylesheet" type="text/css" href="${import.meta.url.match(/.*\//)[0]}/styles/tasklist.css"/>
@@ -86,7 +85,7 @@ class TaskList extends HTMLElement {
 
         this.#statusesList.forEach(status => {
             const option = document.createElement("option");
-            option.text = `${status}`;
+            option.text = status;
             tablerow.cells[2].querySelector("select").appendChild(option);    
         });
         
@@ -112,7 +111,7 @@ class TaskList extends HTMLElement {
         const tr = this.#shadow
             .getElementById("tasklist")
             .querySelector(`tr[data-id="${task.id.toString()}"]`);
-        tr.querySelectorAll("td")[1].textContent=task.newStatus;
+        tr.querySelectorAll("td")[1].textContent=task.status;
     }
 
     /**

@@ -1,3 +1,8 @@
+/*
+TODO: 'Error handling on API calls' - må visst ha try / catch i taskview - ingen vei utenom
+TODO: 'Since getStatuses() and getTasks() don’t depend on each other, you could fetch them in parallel to improve performance:'
+*/
+import ApiClient from "../js/ApiClient.js";
 const template = document.createElement("template");
 template.innerHTML = `
  <link rel="stylesheet" type="text/css"
@@ -17,94 +22,84 @@ class TaskView extends HTMLElement {
     #shadow;
     #taskList;
     #taskBox;
+    #apiClient;
 
     constructor(){
         super();
         this.#shadow = this.attachShadow({mode:"closed"});
         this.#shadow.appendChild(template.content.cloneNode(true));
-
-        this.#configureTaskList();
-        this.#taskBox = this.#shadow.querySelector("task-box");
-
-        this.#getTasks();
+        this.#apiClient = new ApiClient(this.dataset.serviceurl);
     }
 
-    async #configureTaskList(){
-        this.#taskList = this.#shadow.querySelector("task-list");
-
+    async connectedCallback(){
         try {
-            const response = await fetch(`${this.dataset.serviceurl}/allstatuses`);
-            if (!response.ok)
-                throw new Error(`HTTP error, status ${response.status} `)
-            const data = await response.json();
-            if (data.responseStatus!==true)
-                throw new Error("Error: responseStatus not 'true'");
-            this.#taskList.setStatuseslist(data.allstatuses);
-        }
-        catch (error){
-            console.log("Couldn't get statuseslist: ",error);
-        }
+            const [statuses, tasks] = await Promise.all([
+                this.#apiClient.getStatuses(),
+                this.#apiClient.getTasks(),
+                customElements.whenDefined("task-list"),
+                customElements.whenDefined("task-box")
+            ]);
 
+            this.#configureTaskList(statuses);
+            this.#configureTaskBox(statuses);
+            this.#initialize(tasks);           
+        } catch (error) {
+            this.#showError("Error establishing connection with server",error)
+        }
+    }
+    #initialize(tasks){
+        this.#updateHeaderMsg(tasks.length);
+        const newtaskBtn = this.#shadow.querySelector("button");
+        newtaskBtn.disabled = false;
+        newtaskBtn.addEventListener("click",()=>this.#taskBox.show());
+        tasks.forEach(task => this.#taskList.showTask(task));
+    }
+    #configureTaskList(statuses){
+        this.#taskList = this.#shadow.querySelector("task-list");
+        this.#taskList.setStatuseslist(statuses);
+        
         this.#taskList.changestatusCallback(async (id, newStatus)=>{
-            const url = `${this.dataset.serviceurl}/task/${id}`;
-            const reqOptions ={
-                method: "PUT",
-                headers: {"Content-Type": "application/json; charset=utf-8"},
-                body: JSON.stringify({"status":newStatus})
-            };
-            try {    
-                const response = await fetch(url, reqOptions);
-                if (!response.ok)
-                    throw new Error(`HTTP error, status ${response.status} `)
-
-                const data = await response.json();
-                if (data.responseStatus!==true)
-                    throw new Error("Error: responseStatus not 'true'");
-
-                this.#taskList.updateTask({id, newStatus})
+            try {
+                const updatedTask = await this.#apiClient.putTask(id, newStatus);
+                this.#taskList.updateTask(updatedTask);
+            } catch (error) {
+                this.#showError("Error updating status of task", error);
             }
-            catch (error){
-                console.log("Couldn't update task: ",error)
-            }
+
         })
 
         this.#taskList.deletetaskCallback(async id =>{
-            const url = `${this.dataset.serviceurl}/task/${id}`;
             try {
-                const response = await fetch(url,{method: "DELETE"});
-                if (!response.ok)
-                    throw new Error(`HTTP error, status ${response.status}`)
-                const data = await response.json();
-                if (data.responseStatus!==true)
-                    throw new Error("Error: responseStatus not 'true'");
-                this.#taskList.removeTask(id);
-                this.updateHeaderMsg(this.#taskList.getNumtasks());
-            }
-            catch (error){
-                console.log("Error deleting task: ",error);
+                this.#taskList.removeTask(await this.#apiClient.deleteTask(id));
+                this.#updateHeaderMsg(this.#taskList.getNumtasks())
+            } catch (error) {
+                this.#showError("Error deleting task", error);
             }
         })
     }
-    #configureTaskBox(){
-        
+    #configureTaskBox(statuses){
+        this.#taskBox = this.#shadow.querySelector("task-box");
+        this.#taskBox.setStatuseslist(statuses);
+        this.#taskBox.newtaskCallback(async (task)=>{
+            try {
+                const addedTask = await this.#apiClient.postTask(task);
+                this.#taskList.showTask(addedTask);
+                this.#updateHeaderMsg(this.#taskList.getNumtasks())
+                this.#taskBox.close();
+            } catch (error) {
+                this.#showError("Error creating task",error);
+            }
+        })
     }
 
-    updateHeaderMsg(numTasks){
-        const messageEle = this.#shadow.getElementById("message");
-        if (numTasks<1)
-            messageEle.textContent= `No tasks were found.`
-        else
-            messageEle.textContent= `Found ${numTasks} tasks.` 
+    #updateHeaderMsg(numTasks){
+        this.#shadow.getElementById("message").textContent = numTasks>0?
+            `Found ${numTasks} tasks.`
+            :`No tasks were found.`;
     }
-
-    async #getTasks(){
-        const url = `${this.dataset.serviceurl}/tasklist`;
-        const response = await fetch(url);
-        const data = await response.json();
-        this.updateHeaderMsg(data.tasks.length);
-        data.tasks.forEach(task => {
-            this.#taskList.showTask(task);
-        });
+    #showError(msg, error){
+        console.error(msg, error);
+        this.#shadow.getElementById("message").textContent = msg;
     }
 }
 customElements.define("task-view", TaskView);
