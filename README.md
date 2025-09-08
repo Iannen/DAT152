@@ -32,3 +32,10 @@ Forelesning om AJAX gikk greit.
 Var på lab, gikk igjennom ex.2 med bjarte. Måtte fikse sånn at child bare kalte callback til controller, så kaller controller på child sin objektmetode.
 
 Jobbet med Oblig 1 i lab timer
+
+## 5.9
+Crushet oblig 1, har noen todo's i en readme.md inni der, men er stort sett ferdig
+
+Må finne en gruppe til den og andre obligs!
+
+Skal ha Tosin i dag, leser over PDF'en hans og ser på hva han har lagt ut til lab.
