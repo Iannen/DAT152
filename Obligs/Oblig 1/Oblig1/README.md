@@ -25,9 +25,3 @@ TODO: fikse det sånn at task-box har fresh state hver gang den åpnes.
 TODO: Kanskje fikse litt layout of noe CSS og slikt
 
 Tror det er i mål egentlig.
-
-## 8.9
-
-Ble med i gruppe med Johan og Simen
-
-Repo [https://github.com/simsine/dat152_oblig_1 for oblig 1]

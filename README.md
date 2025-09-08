@@ -39,3 +39,7 @@ Crushet oblig 1, har noen todo's i en readme.md inni der, men er stort sett ferd
 Må finne en gruppe til den og andre obligs!
 
 Skal ha Tosin i dag, leser over PDF'en hans og ser på hva han har lagt ut til lab.
+
+Ble med i gruppe med Johan og Simen
+
+Repo [https://github.com/simsine/dat152_oblig_1 for oblig 1]
