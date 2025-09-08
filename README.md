@@ -42,4 +42,4 @@ Skal ha Tosin i dag, leser over PDF'en hans og ser på hva han har lagt ut til l
 
 Ble med i gruppe med Johan og Simen
 
-Repo [https://github.com/simsine/dat152_oblig_1 for oblig 1]
+Repo [https://github.com/simsine/dat152 for oblig 1]
