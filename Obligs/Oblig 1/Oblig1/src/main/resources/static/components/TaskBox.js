@@ -32,11 +32,13 @@ class TaskBox extends HTMLElement{
     }
     setStatuseslist(list){
         this.#statuseslist=list;
-        list.forEach(status => {
-            const newOption = document.createElement("option");
-            newOption.text=status
-            this.#shadow.querySelector("select").appendChild(newOption);
-        });
+        
+        for (let i = 1; i<=this.#statuseslist.length;i++){
+            const option = document.createElement("option");
+            option.text = this.#statuseslist[i-1];
+            option.value=i;
+            this.#shadow.querySelector("select").appendChild(option);
+        }
     }
     newtaskCallback(callback){
         this.#newtaskCallback = callback;
@@ -44,10 +46,11 @@ class TaskBox extends HTMLElement{
             const title=this.#shadow.querySelector("input").value;
             this.#shadow.querySelector("input").value="";
             const status= this.#shadow.querySelector("select").value;
+            this.#shadow.querySelector("select").value="WAITING";
             callback({title, status});
         })
-
     }
+
     close(){
         this.#shadow.querySelector("dialog").close();
     }

@@ -43,3 +43,6 @@ Skal ha Tosin i dag, leser over PDF'en hans og ser på hva han har lagt ut til l
 Ble med i gruppe med Johan og Simen
 
 Repo [https://github.com/simsine/dat152 for oblig 1]
+
+## 15.9 
+Satt med simen litt i lab, vi lever neste mandag og så tar vi en quickcheck på noe kode sånn at vi kan showe med Bjarte.

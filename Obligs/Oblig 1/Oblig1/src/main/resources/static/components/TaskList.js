@@ -83,11 +83,12 @@ class TaskList extends HTMLElement {
         tablerow.cells[0].textContent = task.title;
         tablerow.cells[1].textContent = task.status;
 
-        this.#statusesList.forEach(status => {
+        for (let i = 1; i<=this.#statusesList.length;i++){
             const option = document.createElement("option");
-            option.text = status;
-            tablerow.cells[2].querySelector("select").appendChild(option);    
-        });
+            option.text = this.#statusesList[i];
+            option.value=i;
+            tablerow.cells[2].querySelector("select").appendChild(option);
+        }
         
         tablerow.cells[2].querySelector("select").addEventListener("change", (event)=>{
             const newStatus = event.target.value;
@@ -131,7 +132,7 @@ class TaskList extends HTMLElement {
                     tr.remove();
         }
     }
-
+    
     /**
      * @public
      * @return {Number} - Number of tasks on display in view
