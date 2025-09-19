@@ -1,0 +1,19 @@
+:global .adult {
+    background-color: pink;
+}
+
+.male {
+    color: blue;
+}
+
+.female {
+    color: green;
+}
+
+.student {
+    border: 2px solid red;
+}
+
+.teacher {
+    border: 2px solid yellow;
+}

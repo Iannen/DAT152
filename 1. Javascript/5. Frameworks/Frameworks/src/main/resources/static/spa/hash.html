@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="#">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Author" content="Bjarte Wang-Kileng" />
+    <link href="../main.css" rel="stylesheet" type="text/css" />
+    <title>URLs with hash sign</title>
+</head>
+
+<body>
+    <h1>URLs with hash sign</h1>
+
+    <p>Open network tab in browser and observe which of the below links that results in a server request.</p>
+
+    <p>URLs that do not send request to server:</p>
+    <ul>
+        <li><a href="#">#</a></li>
+        <li><a href="hash.html#">hash.html#</a></li>
+        <li><a href="#pageOne">#pageOne</a></li>
+        <li><a href="hash.html#pageOne">hash.html#pageOne</a></li>
+        <li><a href="#/user/ole">#/user/ole</a></li>
+        <li><a href="hash.html#/user/ole">hash.html#/user/ole</a></li>
+    </ul>
+
+    <p>URL that send do a request to server:</p>
+    <ul>
+        <li><a href="hash.html">hash.html</a></li>
+    </ul>
+    <p>The last URL aske the web server for document, but browser can probably use the cache to fillfill the request.</p>
+    
+    <p><a href="index.html">Back to index page</a></p>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="#">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="Author" content="Bjarte Wang-Kileng" />
+    <link href="../main.css" rel="stylesheet" type="text/css" />
+    <link href="mpa.css" rel="stylesheet" type="text/css" />
+    <title>Multi Page Application</title>
+</head>
+
+<body>
+    <h1>Multi Page Application</h1>
+
+    <p>Open network tab in browser and observe that sumitting the form will result in a server request and a new page from the server.</p>
+
+    <p>Traditional web applications are multi page applications. Open the network pane in the browser andcheck the
+        traffic.
+        On form submit, a new web page is loaded that replaces this page.</p>
+
+    <form method="POST" action="subscribe" modelAttribute="subscription">
+        <fieldset>
+            <legend>Course subscription</legend>
+            <input name="username" placeholder="Your name" type="text"></input>
+            <input name="coursename" placeholder="Course" type="text"></input>
+
+            <button type="submit">Subscribe</button><button type="reset">Reset</button>
+        </fieldset>
+    </form>
+
+    <p><a href="index.html">Back to main page</a></p>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+fieldset {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 10px;
+    color: red;
+}
+
+fieldset * {
+    grid-column: 1/span 2;
+}
+
+fieldset button[type="submit"] {
+    grid-column: 1;
+}
+
+fieldset button[type="reset"] {
+    grid-column: 2;
+}

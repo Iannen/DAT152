@@ -1,0 +1,10 @@
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+}
+
+fieldset, div[data-tasks] {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap:10px;
+}

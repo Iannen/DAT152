@@ -53,3 +53,5 @@ Var i forelesning med Tosin. Det ser ut til å bli spring web spesifikt fra her 
 Johan var der, vi snakket om å få inn obligen på mandag, han hadde program ut dagen.
 
 Har ligget på latsiden og hiver meg på den store razziaen nå.
+
+Ok, omorganiserte repoet sånn at det matcher strukturen til foreleserne.

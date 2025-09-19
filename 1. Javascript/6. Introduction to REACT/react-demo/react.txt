@@ -1,0 +1,428 @@
+https://reactjs.org/tutorial/tutorial.html
+https://react.dev/learn/describing-the-ui
+
+Installere:
+* node.js
+* npm - package manager for node.js
+
+########################################################################
+####                                                                ####
+#### Slide 3                                                        ####
+####                                                               ####
+####                                                                ####
+########################################################################
+
+TOP=~/undervisning/klasser/DAT152/H2025/forelesninger/emner/l7.react/demo/react/
+cd $TOP
+rm -rf dat152-project
+
+#Start building React project
+# - Can use codesandbox and create zip archive
+#   Requires login to modify and fork
+# https://codesandbox.io/p/sandbox/react-new
+# Unzip in an empty folder, then
+# npm install
+# npm run dev
+
+# - Can use a ready made build tool and development server.
+#   I choose vite, good for a pure client side React solution
+
+npm create vite@latest dat152-project -- --template react
+cd dat152-project
+npm install
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 4-7                                                      ####
+#### welcome                                                        ####
+####                                                                ####
+########################################################################
+
+# index.html: Starting point for the application
+# vite.config.js: Main configuragtion file.
+# public folder - Only the content of this folder can be referenced from browser.
+# node_modules - Modules used by npm to create the web application
+# src folder - Here we put the dynamic content
+
+cd $TOP
+rm -f dat152-project/index.html
+rm -rf dat152-project/src
+cp code/welcome/index.html dat152-project/
+cp -r code/welcome/src dat152-project/
+
+#Show content of files
+less dat152-project/index.html
+
+less dat152-project/src/main.jsx
+# StrictMode is a development tool that highlights potentiall issues
+# StrictMode has no impact on a production build
+less dat152-project/src/App.jsx
+less dat152-project/src/index.css
+
+pushd dat152-project
+npm run dev
+
+#Kill, and try to reload browser window
+
+#Open also the public/index.html as file in the browser
+
+#Modify vite.config.js, add
+# base: './'
+
+#Translate the React code to legal HTML, JavaScript and CSS
+npm run build
+
+#Copy to web server
+scp -r dist eple:~/public_html
+
+#On eple
+# - Rename folder
+rm -rf ~/public_html/welcome
+mv ~/public_html/dist ~/public_html/welcome
+# Allow apache read access
+find ~/public_html/welcome -type d -exec chmod a+rx {} \;
+find ~/public_html/welcome -type f -exec chmod a+r {} \;
+
+#Open in browser
+# - https://eple.hvl.no/~bki/welcome
+
+
+########################################################################
+####                                                                ####
+#### Slide 9                                                        ####
+####                                                                ####
+########################################################################
+
+Demo of Eclipse project ReactDemo
+
+
+########################################################################
+####                                                                ####
+#### Slide 10                                                       ####
+####                                                                ####
+########################################################################
+
+#-----------------------------------------------------------------------
+#---                                                                ----
+#--- Slide 10 - Demo 1                                              ----
+#--- Local scope                                                    ----
+#---                                                                ----
+#-----------------------------------------------------------------------
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/cssmodules-localscope/src dat152-project/
+
+#Show content of files
+less dat152-project/src/student.module.css
+less dat152-project/src/teacher.module.css
+less dat152-project/src/App.jsx
+
+cd dat152-project/
+npm run dev
+
+
+#-----------------------------------------------------------------------
+#---                                                                ----
+#--- Slide 10 - Demo 2                                              ----
+#--- Class composition                                              ----
+#---                                                                ----
+#-----------------------------------------------------------------------
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/cssmodules-composition/src dat152-project/
+
+#Show content of files
+less dat152-project/src/person.module.css
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+#-----------------------------------------------------------------------
+#---                                                                ----
+#--- Slide 10 - Demo 3                                              ----
+#--- Other features                                                 ----
+#---                                                                ----
+#-----------------------------------------------------------------------
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/cssmodules-more/src dat152-project/
+
+#Show content of files
+less dat152-project/src/person.module.css
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 11                                                       ####
+#### jsx-intro                                                      ####
+####                                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/jsx-intro/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 12                                                        ####
+#### jsx-expressions                                                ####
+####                                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/jsx-expressions/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 13                                                        ####
+#### jsx-logical                                                    ####
+####                                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/jsx-logical/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 14                                                        ####
+#### jsx-javascript                                                 ####
+####                                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/jsx-javascript/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 16                                                        ####
+#### component-state                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/component-state/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 18                                                       ####
+#### property object                                                ####
+####                                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/props/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 21                                                       ####
+#### eventintro                                                     ####
+####                                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/eventintro/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 22                                                       ####
+#### reactevent                                                     ####
+####                                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/reactevent/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 23                                                       ####
+####                                                                ####
+########################################################################
+
+#-----------------------------------------------------------------------
+#---                                                                ----
+#--- Slide 23 - Demo 1                                              ----
+#--- usingmap - no key attribute                                    ----
+#---                                                                ----
+#-----------------------------------------------------------------------
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/usingmap/* dat152-project/src/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+#Show the console output in the browser: Warning on missing key
+
+
+#-----------------------------------------------------------------------
+#---                                                                ----
+#--- Slide 23 - Demo 2                                              ----
+#--- usingmap_key                                                   ----
+#---                                                                ----
+#-----------------------------------------------------------------------
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/usingmap_key/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 25                                                       ####
+#### form-controlled                                                ####
+########################################################################
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/form-controlled/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+
+cd dat152-project
+npm run dev
+
+
+########################################################################
+####                                                                ####
+#### Slide 30                                                      ####
+#### customerlist                                                  ####
+########################################################################
+
+#-----------------------------------------------------------------------
+#---                                                                ----
+#--- Slide 30 - Demo 1 - the problem                                ----
+#--- customerlist_layout                                            ----
+#---                                                                ----
+#-----------------------------------------------------------------------
+
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/customerlist_layout/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+less dat152-project/src/customerform.jsx
+less dat152-project/src/customerlist.jsx
+
+cd dat152-project
+npm run dev
+
+#-----------------------------------------------------------------------
+#---                                                                ----
+#--- Slide 30 - Demo 2 - solution                                   ----
+#--- customerlist                                            ----
+#---                                                                ----
+#-----------------------------------------------------------------------
+
+cd $TOP
+
+rm -rf dat152-project/src
+cp -r code/customerlist/src dat152-project/
+
+#Show content
+less dat152-project/src/App.jsx
+less dat152-project/src/customerform.jsx
+less dat152-project/src/customerlist.jsx
+
+cd dat152-project
+npm run dev
