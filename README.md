@@ -55,3 +55,5 @@ Johan var der, vi snakket om å få inn obligen på mandag, han hadde program ut
 Har ligget på latsiden og hiver meg på den store razziaen nå.
 
 Ok, omorganiserte repoet sånn at det matcher strukturen til foreleserne.
+
+Må få alle prosjektene til å kjøre. Lage en sheets oversikt pr 'item' (forelesning eller lab øvelse)
