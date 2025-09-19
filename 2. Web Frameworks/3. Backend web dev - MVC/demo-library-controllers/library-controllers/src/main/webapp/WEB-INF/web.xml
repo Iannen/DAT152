@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+  <display-name>library-controllers</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>AddBookController</display-name>
+    <servlet-name>AddBookController</servlet-name>
+    <servlet-class>no.hvl.dat152.controller.AddBookController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddBookController</servlet-name>
+    <url-pattern>/addbook</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewBooksController</display-name>
+    <servlet-name>ViewBooksController</servlet-name>
+    <servlet-class>no.hvl.dat152.controller.ViewBooksController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewBooksController</servlet-name>
+    <url-pattern>/viewbooks</url-pattern>
+  </servlet-mapping>
+  <resource-ref>
+    <description>DB Connection</description>
+    <res-ref-name>jdbc/DAT152</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+    <res-sharing-scope>Shareable</res-sharing-scope>
+  </resource-ref>
+  <servlet>
+    <description></description>
+    <display-name>ViewBookController</display-name>
+    <servlet-name>ViewBookController</servlet-name>
+    <servlet-class>no.hvl.dat152.controller.ViewBookController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewBookController</servlet-name>
+    <url-pattern>/viewbook</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateBookController</display-name>
+    <servlet-name>UpdateBookController</servlet-name>
+    <servlet-class>no.hvl.dat152.controller.UpdateBookController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateBookController</servlet-name>
+    <url-pattern>/updatebook</url-pattern>
+  </servlet-mapping>
+</web-app>
