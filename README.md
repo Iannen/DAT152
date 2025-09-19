@@ -46,3 +46,10 @@ Repo [https://github.com/simsine/dat152 for oblig 1]
 
 ## 15.9 
 Satt med simen litt i lab, vi lever neste mandag og så tar vi en quickcheck på noe kode sånn at vi kan showe med Bjarte.
+
+## 19 .9
+Var i forelesning med Tosin. Det ser ut til å bli spring web spesifikt fra her og ut.
+
+Johan var der, vi snakket om å få inn obligen på mandag, han hadde program ut dagen.
+
+Har ligget på latsiden og hiver meg på den store razziaen nå.
