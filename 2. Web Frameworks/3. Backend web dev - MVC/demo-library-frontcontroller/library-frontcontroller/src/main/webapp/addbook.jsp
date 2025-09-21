@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="container">
-		<a href="/library">Home</a>
+		<a href="/library-frontcontroller">Home</a>
 		<p>
 		<form action="addbooksave" method="post">
 			<table>

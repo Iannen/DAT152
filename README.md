@@ -60,3 +60,4 @@ Må få alle prosjektene til å kjøre. Lage en sheets oversikt pr 'item' (forel
 
 ## 21.9
 
+Ok fikk alle EE appene til Tosin til å kjøre. Måtte fikse litt på URL'er sånn at alt funker samtidig på samme server.

@@ -10,9 +10,9 @@
 </head>
 <body>
 	<div>
-		<a href="/library">Home</a>
+		<a href="/library-controllers">Home</a>
 		<p>
-		<form action="/library/addbook" method="post">
+		<form action="/library-controllers/addbook" method="post">
 			<table>
 				<tr>
 					<td>ISBN:</td>

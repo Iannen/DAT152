@@ -26,7 +26,7 @@
 	<p>
 	<div>
 		<a href="updatebook?isbn=${book.isbn}">Update</a>
-		<a href="/library">Home</a>
+		<a href="/library-frontcontroller">Home</a>
 	</div>
 </div>
 </body>

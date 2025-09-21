@@ -26,7 +26,7 @@
 		</table>
 		<p>
 		<div>
-			<a href="/library">Home</a>
+			<a href="/library-frontcontroller">Home</a>
 		</div>
 	</div>
 </body>

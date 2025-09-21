@@ -17,7 +17,7 @@
                         
         
         <property name="java-output-path" value="/library/build/classes"/>
-        <property name="context-root" value="library2"/>
+        <property name="context-root" value="library-controllers"/>
                     
     
     </wb-module>

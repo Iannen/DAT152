@@ -8,9 +8,9 @@
 <title>Update Book</title>
 </head>
 <body>
-	<a href="/library">Home</a>
+	<a href="/library-controllers">Home</a>
 		<p>
-		<form action="/library/updatebook" method="post">
+		<form action="/library-controllers/updatebook" method="post">
 			<table>
 				<tr>
 					<td>ISBN:</td>

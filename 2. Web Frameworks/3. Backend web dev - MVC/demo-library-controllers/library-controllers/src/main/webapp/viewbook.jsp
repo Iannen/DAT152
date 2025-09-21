@@ -25,8 +25,8 @@
 	</table>
 	<p>
 	<div>
-		<a href="/library/updatebook?isbn=${book.isbn}">Update</a>
-		<a href="/library">Home</a>
+		<a href="/library-controllers/updatebook?isbn=${book.isbn}">Update</a>
+		<a href="/library-controllers">Home</a>
 	</div>
 </div>
 </body>

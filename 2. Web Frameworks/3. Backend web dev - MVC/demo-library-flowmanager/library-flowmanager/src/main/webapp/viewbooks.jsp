@@ -31,7 +31,7 @@
 		</table>
 		<p>
 		<div>
-			<a href="/library">Home</a>
+			<a href="/library-flowmanager">Home</a>
 		</div>
 	</div>
 </body>

@@ -8,7 +8,7 @@
 <title>Update Book</title>
 </head>
 <body>
-	<a href="/library">Home</a>
+	<a href="/library-flowmanager">Home</a>
 		<p>
 		<form action="updatebook" method="post">
 			<table>
