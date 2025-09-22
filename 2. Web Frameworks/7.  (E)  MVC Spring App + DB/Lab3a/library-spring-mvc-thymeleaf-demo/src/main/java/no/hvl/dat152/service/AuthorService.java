@@ -17,12 +17,15 @@ import no.hvl.dat152.repository.AuthorRepository;
 @Service
 public class AuthorService {
 
-	@Autowired
-	private AuthorRepository authorRepository;
+	private final AuthorRepository authorRepository;
 	
+	public AuthorService(AuthorRepository authorRepository){
+		this.authorRepository=authorRepository;
+	}
 	
-	// TODO : saveAuthor(Author author)
-
+	public Author saveAuthor(Author author){
+		return this.authorRepository.save(author);
+	}
 	
 	public List<Author> findAll(){
 		
