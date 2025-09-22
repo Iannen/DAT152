@@ -15,7 +15,7 @@
 	<div class="text-left">
 		<p>
 			<a href="/library-l2b">Home</a> | <a href="do/viewbooks">View Books</a> | 
-			<a href="do/addbookform">Add Book</a> 
+			<a href="do/addbookform">Add Book</a> | <a href="do/addauthorform">Add Author</a>
 		</p>
 		
 	</div>

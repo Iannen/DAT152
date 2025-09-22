@@ -6,8 +6,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import no.hvl.dat152.action.AddBookFormAction;
+import no.hvl.dat152.action.AddAuthorAction;
+import no.hvl.dat152.action.AddAuthorFormAction;
 import no.hvl.dat152.action.AddBookAction;
 import no.hvl.dat152.action.ControllerAction;
+import no.hvl.dat152.action.DeleteBookAction;
 import no.hvl.dat152.action.LoginAction;
 import no.hvl.dat152.action.LoginFormAction;
 import no.hvl.dat152.action.LogoutAction;
@@ -56,6 +59,11 @@ public class FrontController extends HttpServlet {
 		actions.put("loginform", new LoginFormAction());
 		actions.put("login", new LoginAction());
 		actions.put("logout", new LogoutAction());
+		
+		actions.put("addauthorform", new AddAuthorFormAction());	//TODO
+		actions.put("addauthor", new AddAuthorAction());			//TODO
+		actions.put("deletebookconfirm", new ViewBookAction());
+		actions.put("deletebook", new DeleteBookAction());			//TODO
 	}
 	
 	/**

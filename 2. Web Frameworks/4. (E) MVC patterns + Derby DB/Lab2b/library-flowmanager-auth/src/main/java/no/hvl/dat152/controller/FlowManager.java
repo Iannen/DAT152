@@ -27,6 +27,11 @@ public class FlowManager {
 		pages.put("viewbooks", "/viewbooks.jsp");
 		pages.put("loginform", "/login.jsp");
 		
+		pages.put("addauthorform", "/addauthor.jsp");				
+		pages.put("addauthor", "/viewbooks.jsp");
+		pages.put("deletebookconfirm", "/deletebook.jsp");			
+		pages.put("deletebook", "/viewbooks.jsp");
+		
 	}
 	
 	public String getPage(String cmd) {

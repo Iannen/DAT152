@@ -173,6 +173,29 @@ public class BookDAO {
 	    
 	    return false;
 	  }
+ 	 public boolean deleteBook(String isbn) {
 
+   	    String sql = "DELETE FROM Lib.Books where isbn = '" + isbn + "'";
+
+   	    Connection c = null;
+   	    Statement s = null;
+   	    ResultSet r = null;
+
+   	    try {        
+   	      c = DatabaseHelper.getConnection();
+   	      s = c.createStatement();       
+   	      int row = s.executeUpdate(sql);
+   	      System.out.println("Book with isbn = " + isbn + " deleted!");
+   	      if(row >= 0)
+   	    	  return true;
+   	      
+   	    } catch (Exception e) {
+   	      System.out.println(e);
+   	      return false;
+   	    } finally {
+   	      DatabaseHelper.closeConnection(r, s, c);
+   	    }
+   	    return false;
+   	  }
 }
 

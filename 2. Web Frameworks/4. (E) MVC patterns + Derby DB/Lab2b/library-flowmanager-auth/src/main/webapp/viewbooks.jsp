@@ -17,9 +17,15 @@
 			<tr>
 				<td> ${book.isbn}</td>
 				<td> ${book.title}</td>
-				<td>
-					<a href="viewbook?isbn=${book.isbn}&authorid=${book.authorId}">view</a>
-				</td>
+                <td>
+                    <a href="viewbook?isbn=${book.isbn}&authorid=${book.authorId}">view</a>
+                </td>
+                <td>
+                    <a href="updatebookform?isbn=${book.isbn}&authorid=${book.authorId}">update</a>
+                </td>
+                <td>
+                    <a href="deletebookconfirm?isbn=${book.isbn}&authorid=${book.authorId}">delete</a>
+                </td>
 			</tr>
 			</c:forEach>
 		</table>

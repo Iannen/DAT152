@@ -83,16 +83,17 @@ class TaskList extends HTMLElement {
         tablerow.cells[0].textContent = task.title;
         tablerow.cells[1].textContent = task.status;
 
-        for (let i = 1; i<=this.#statusesList.length;i++){
+        for (let i = 0; i<this.#statusesList.length;i++){
             const option = document.createElement("option");
             option.text = this.#statusesList[i];
-            option.value=i;
+            option.value=i+1;
             tablerow.cells[2].querySelector("select").appendChild(option);
         }
         
         tablerow.cells[2].querySelector("select").addEventListener("change", (event)=>{
             const newStatus = event.target.value;
-            if (window.confirm(`Set '${task.title}' to ${newStatus}?`))
+            const text = event.currentTarget.querySelector(`option[value="${newStatus}"]`).text;
+            if (window.confirm(`Set '${task.title}' to ${text}?`))
                 this.#changeStatusCallback(task.id, newStatus)
             tablerow.cells[2].querySelector("select").value="0";
         })

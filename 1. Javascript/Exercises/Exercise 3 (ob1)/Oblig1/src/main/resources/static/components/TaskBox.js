@@ -33,9 +33,9 @@ class TaskBox extends HTMLElement{
     setStatuseslist(list){
         this.#statuseslist=list;
         
-        for (let i = 1; i<=this.#statuseslist.length;i++){
+        for (let i = 0; i<this.#statuseslist.length;i++){
             const option = document.createElement("option");
-            option.text = this.#statuseslist[i-1];
+            option.text = this.#statuseslist[i];
             option.value=i;
             this.#shadow.querySelector("select").appendChild(option);
         }
@@ -46,7 +46,7 @@ class TaskBox extends HTMLElement{
             const title=this.#shadow.querySelector("input").value;
             this.#shadow.querySelector("input").value="";
             const status= this.#shadow.querySelector("select").value;
-            this.#shadow.querySelector("select").value="WAITING";
+            this.#shadow.querySelector("select").value="0";
             callback({title, status});
         })
     }
