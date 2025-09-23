@@ -21,7 +21,9 @@ public class AuthorService {
 	private AuthorRepository authorRepository;
 
 	
-	// TODO : saveAuthor(Author author)
+	public Author saveAuthor(Author author){
+		return this.authorRepository.save(author);
+	}
 	
 	public List<Author> findAll(){
 		

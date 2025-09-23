@@ -25,10 +25,10 @@
 				<td>
 					<a th:href="@{'/viewbook?id='+${book.id}}">view</a>
 				</td>
-				<td>
+				<td sec:authorize="hasRole('ADMIN')">
 					<a th:href="@{'/updatebook?id='+${book.id}}">update</a>
 				</td>
-				<td>
+				<td sec:authorize="hasRole('ADMIN')">
 					<a th:href="@{'/deletebook?id='+${book.id}}">delete</a>
 				</td>
 			</tr>

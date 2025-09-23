@@ -79,15 +79,17 @@ public class BookController {
 		return "redirect:viewbooks";
 	}
 	
-	@GetMapping("/deletebook")
-	public String delete(@RequestParam Long id, Model model) throws BookNotFoundException {
-		
-		bookService.deleteBookById(id);
-		
-		List<Book> books = (List<Book>) bookService.findAll();
-		model.addAttribute("books", books);
-		
-		return "viewbooks";
+	@GetMapping("deletebook") 
+	public String delete(@RequestParam Long id, Model model)throws BookNotFoundException{
+		Book book = this.bookService.findById(id);
+		model.addAttribute("book", book);
+		return "deletebook";
+	}
+
+	@PostMapping("deletebook")
+	public String delete(@RequestParam long id) throws BookNotFoundException{
+		this.bookService.deleteBookById(id);
+		return "redirect:viewbooks";
 	}
 	
 	@GetMapping("/updatebook")

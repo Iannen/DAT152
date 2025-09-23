@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add New Book</title>
+<link rel="stylesheet" type="text/css" media="all" href="/css/styles.css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="container">
+		<form th:action="@{/login}" method="post" enctype="multipart/form-data">
+			<table>
+				<tr>
+					<td>Input username:</td>
+					<td><input name="username" /></td>
+				</tr>
+				<tr>
+					<td>Input password:</td>
+					<td><input name="password" type="password"/></td>
+				</tr>
+				<tr>
+                    <td></td>
+                    <td><input th:type="submit" value="Log in"></td>
+                </tr>
+			</table>
+		</form>
+</main>
+</body>
+</html>

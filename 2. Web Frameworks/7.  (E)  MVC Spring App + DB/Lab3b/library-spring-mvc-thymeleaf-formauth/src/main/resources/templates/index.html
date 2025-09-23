@@ -20,10 +20,10 @@
         </table>
         </form>
 	<div>
-		<p>
-			<a href="/viewbooks">View Books</a> | 
-			<a href="/addbook">Add Book</a> | 
-			<a href="/addauthor">Add Author</a>
+		<p> 
+			<a href="/viewbooks">View Books</a> 
+			<a sec:authorize="hasRole('ADMIN')" href="/addbook"> | Add Book</a>
+			<a sec:authorize="hasRole('ADMIN')" href="/addauthor"> | Add Author</a>
 		</p>
 		
 	</div>

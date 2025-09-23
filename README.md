@@ -61,3 +61,11 @@ Må få alle prosjektene til å kjøre. Lage en sheets oversikt pr 'item' (forel
 ## 21.9
 
 Ok fikk alle EE appene til Tosin til å kjøre. Måtte fikse litt på URL'er sånn at alt funker samtidig på samme server.
+
+## 22.9 
+Fikk levert oblig 1, gjorde ferdig tosin lab 2, halve lab3
+
+## 23.9 
+Gjorde ferdig lab3. Fikk ikke til login helt. Når jeg logger ut, så redirectes det til login view, men man må logge inn to ganger.
+
+Hiver inn nytt fra Canvas i repo, og hopper over på noe mattegreier.

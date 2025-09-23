@@ -5,10 +5,11 @@ package no.hvl.dat152.controller;
 
 import java.util.List;
 
-
+import org.h2.engine.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,8 @@ import no.hvl.dat152.model.Author;
 import no.hvl.dat152.model.Book;
 import no.hvl.dat152.service.AuthorService;
 import no.hvl.dat152.service.BookService;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 /**
  * @author tdoy
@@ -76,7 +79,18 @@ public class BookController {
 		return "redirect:viewbooks";
 	}
 	
-	// TODO - deleteBook()
+	@GetMapping("deletebook") 
+	public String delete(@RequestParam Long id, Model model)throws BookNotFoundException{
+		Book book = this.bookService.findById(id);
+		model.addAttribute("book", book);
+		return "deletebook";
+	}
+
+	@PostMapping("deletebook")
+	public String delete(@RequestParam long id) throws BookNotFoundException{
+		this.bookService.deleteBookById(id);
+		return "redirect:viewbooks";
+	}
 	
 	@GetMapping("/updatebook")
 	public String updateBook(@RequestParam Long id, Model model) throws BookNotFoundException {

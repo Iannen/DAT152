@@ -6,6 +6,7 @@ package no.hvl.dat152.service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -81,8 +82,11 @@ public class BookService {
 	 */
 	public void deleteBookById(long id) throws BookNotFoundException {
 		
-		// TODO
-
+		Optional<Book> opt = this.bookRepository.findById(id);
+		if (opt.isPresent())
+			this.bookRepository.delete(opt.get());
+		else
+			throw new BookNotFoundException("Book with id " + id + " not found");
 	}
 	
 	private Book findBookById(long id) throws BookNotFoundException {

@@ -29,9 +29,14 @@ public class WebAppSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    http
-	        .formLogin(Customizer.withDefaults()) // Use default form login
+	        .formLogin(form -> form
+				.loginPage("/login")
+				.permitAll()
+			) 
 	        .authorizeHttpRequests(authorize -> authorize
-	        	.requestMatchers("/", "/css/**").permitAll() // Allow public pages
+	        	.requestMatchers("/", "/css/**").permitAll()
+				.requestMatchers("/viewbooks", "/viewbook").hasAnyRole("USER","ADMIN")
+				.requestMatchers("/addbook", "/addauthor","/updatebook", "deletebook").hasRole("ADMIN")
 	            .anyRequest().authenticated() // All other requests require authentication
 	        );
 
