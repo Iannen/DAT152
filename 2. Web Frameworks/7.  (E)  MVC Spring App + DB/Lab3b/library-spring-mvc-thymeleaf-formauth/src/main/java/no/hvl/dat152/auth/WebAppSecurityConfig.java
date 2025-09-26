@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.security.config.Customizer.withDefaults;
+
 
 
 /**
@@ -33,11 +35,12 @@ public class WebAppSecurityConfig {
 				.loginPage("/login")
 				.permitAll()
 			) 
+		.logout(logout -> logout.permitAll())
 	        .authorizeHttpRequests(authorize -> authorize
 	        	.requestMatchers("/", "/css/**").permitAll()
 				.requestMatchers("/viewbooks", "/viewbook").hasAnyRole("USER","ADMIN")
 				.requestMatchers("/addbook", "/addauthor","/updatebook", "deletebook").hasRole("ADMIN")
-	            .anyRequest().authenticated() // All other requests require authentication
+	            .anyRequest().authenticated() 
 	        );
 
 	    return http.build();
