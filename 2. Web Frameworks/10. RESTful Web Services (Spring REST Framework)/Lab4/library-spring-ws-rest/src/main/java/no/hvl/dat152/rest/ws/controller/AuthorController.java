@@ -6,21 +6,16 @@ package no.hvl.dat152.rest.ws.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.DeleteExchange;
-
 import no.hvl.dat152.rest.ws.exceptions.DatabaseViolationException;
 import no.hvl.dat152.rest.ws.exceptions.NoSuchResourceException;
 import no.hvl.dat152.rest.ws.exceptions.PostWithIdException;
 import no.hvl.dat152.rest.ws.model.Author;
 import no.hvl.dat152.rest.ws.service.AuthorService;
 
-import java.net.http.HttpResponse;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
