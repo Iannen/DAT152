@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import no.hvl.dat152.rest.ws.exceptions.NoSuchResourceException;
 import no.hvl.dat152.rest.ws.model.Author;
 import no.hvl.dat152.rest.ws.model.Book;
 import no.hvl.dat152.rest.ws.repository.AuthorRepository;
@@ -52,7 +53,7 @@ class ConfigCommandLineRunner implements CommandLineRunner  {
 		return authors;
 	}
 	
-	private Iterable<Book> creatDefaultBooks() {
+	private Iterable<Book> creatDefaultBooks() throws NoSuchResourceException {
 		
 		Author author1 = authorService.findById(1);
 		Author author2 = authorService.findById(2);
