@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" 
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+<link rel="stylesheet" type="text/css" media="all" href="/css/styles.css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<main class="container">
+	<!-- <h1>Welcome to e-Library Service (Spring Boot)</h1> -->
+	    <h1 th:text="#{greet}"></h1>
+        <form th:action="@{/logout}" method="post">
+        <table>
+        <tr>
+        <td><a href="/global?locale=en_US">EN</a> | <a href="/global?locale=no_NO">NO</a></td><td></td>
+        </tr>
+        <tr>
+            <td>
+            	<h3 th:inline="text"><b th:text="#{hello}"></b> <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h3>
+            </td>
+            <td><input type="submit" th:value="#{logout}"/></td>
+        </table>
+        </form>
+	<div>
+		<p>
+			<a href="/viewbooks"><b th:text="#{view}"></b></a> | 
+			<a href="/addbook"><b th:text="#{add}"></b></a> | 
+			<a href="/addauthor"><b th:text="#{author}"></b></a>
+		</p>
+		
+	</div>
+</main>
+</body>
+</html>

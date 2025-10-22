@@ -1,0 +1,52 @@
+This is not good enough. I let it pass, but at the oral demonstration you must
+be able to provide solutions to all the problems listed below.
+See the comments below.
+
+####################
+There should be only a single script tag in the file index.html The modules should manage the dependecies themselves using import. That is, only taskview.js should be loaded by index.html.
+
+No need to use defer with script tag if type="module".
+
+Why do you load the JavaScript file "TaskList.js" from the index file? The only JavaScript file to load should be the module for TaskView.
+
+Why do you load the JavaScript file "TaskBox.js" from the index file? The only JavaScript file to load should be the module for TaskView.
+
+For the option elements, why not use the status name as the option value? The values can be
+DONE, ACTIVE and WAITING, equal to the option text.
+
+Properties like table.tBodies[0].rows are faster than using querySelector/querySelectorAll.
+
+The only functionality of addChangestatusCallback, addDeletetaskCallback and addNewtaskCallback
+is to register a callback method, and nothing more.
+
+E.g. for , with #newcallback a private field:
+addNewtaskCallback(callback) {
+    this.#newcallback;
+}
+
+or, with #newtaskCallbacks a private Map:
+addNewtaskCallback(callback) {
+    const callbackId = Symbol("addNewtaskCallback");
+    this.#newtaskCallbacks.set(callbackId, callback);
+    return callbackId;
+}
+
+Use operators in a boolean context to avoid problems.
+Example on what to avoid:
+    if (this.querySelector("table")) { ... }
+Rather, use:
+    if (this.querySelector("table") !== null) { ... }
+
+In a boolean context, undefined, 0, Null, an empty text will all
+evaluate to false. Without an operator, a misprint in the expression
+can therefore be difficult to find, and can give unexpected results.
+
+Why do you "await" a method that does not return a Promise?
+
+Using "await" on something that is not a Promise is not necessary. If "await", and no promise, the browser will encapsulate the return value in a Promise that resolves immediately.
+
+The TaskBox dialog window does not close when clicking on the close symbol.
+
+Modifying task status does not work.
+
+A task with no title should be ignored and the data must not be sent to the server.
